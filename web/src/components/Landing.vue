@@ -1,13 +1,4 @@
-<script setup>
-
-defineProps({
-  msg: String,
-})
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
-
   <p>
     Nightjar is an artist led, volunteer run community arts and music space in Gainesville, Florida. <br />
     Website coming soon :)

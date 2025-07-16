@@ -1,5 +1,5 @@
 <script setup>
-import HelloWorld from './components/Landing.vue'
+import Landing from './components/Landing.vue'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import HelloWorld from './components/Landing.vue'
       <img src="./assets/nightjar_logo_black.png" class="logo nightjar" alt="Nightjar logo" />
     </a>
   </div>
-  <HelloWorld msg="Nightjar" />
+  <Landing />
 </template>
 
 <style scoped>
