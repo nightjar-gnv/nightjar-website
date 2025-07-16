@@ -1,0 +1,31 @@
+# Compiled
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+node_modules
+dist
+dist-ssr
+*.local
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+.vscode/*
+!.vscode/extensions.json
+.idea
