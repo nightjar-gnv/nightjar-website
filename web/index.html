@@ -3,11 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Nightjar</title>
+    <script type="module" src="./src/js/main.js"></script>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="./src/main.js"></script>
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#page-top">Nightjar</a>
+          <button class="navbar-toggler text-uppercase font-weight-bold text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#home">Home</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#gallery">Gallery</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#calendar">Calendar</a></li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+
+    <div class="section sec-b row text-black" id="home">
+      <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img style="max-width:20%;" src="./src/assets/nightjar_logo_black.png" alt="nightjar logo" />
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Art - Music - Workshops</p>
+
+        <!-- About Section Content-->
+        <p class="lead">Nightjar is an artist led, volunteer run community arts and music space in Gainesville, Florida.</p>
+      </div>
+    </div>
+
+    <div class="section sec-a row text-black" id="contact">
+      <div class="container text-center align-items-center flex-column">
+        <div class="row">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-4">
+            <p>
+              <h2 class="text-uppercase text-secondary">Contact Us</h2>
+              Email nightjargnv@gmail.com for any inquiries. <br />
+              We are located at:<br />
+              1628 NW 6th St<br />
+              Gainesville FL, 32609
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <p>
+              <h2 class="text-uppercase text-secondary mb-0">Reserve Our Space</h2>
+              <p >We'd love to host your group for an event, fill out the form below and we'll get back to you as soon as we review it.</p>
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScn8L8q6u9FAwbQNRM_G6L9eigELzn5lGy4uuuPgvgW8dzOYA/viewform?usp=header">Form</a>
+            </p>
+          </div>
+
+          <div class="col-lg-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section sec-b row" id="gallery">
+      <div class="container">
+        <div id="galleryCarousel" class="carousel slide">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="3" aria-label="Slide 4" class=""></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="4" aria-label="Slide 5" class=""></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./src/assets/nightjar_slide1.jpg" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./src/assets/nightjar_slide2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./src/assets/nightjar_slide3.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./src/assets/nightjar_slide4.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./src/assets/nightjar_slide5.jpg" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section sec-a row" id="calendar">
+      <div class="container align-items-center">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Calendar</h2>
+        <p class="text-center">Calendar of events coming soon!</p>
+      </div>
+    </div>
+
   </body>
 </html>
