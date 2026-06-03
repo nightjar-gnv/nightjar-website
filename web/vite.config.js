@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { dirname, resolve } from 'node:path'
 
 // https://vite.dev/config/
 export default defineConfig({
