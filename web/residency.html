@@ -1,21 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="frame-src https://docs.google.com">
-    <title>Nightjar Gallery Curator Residency</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Residency Application</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F4EE;
+    --ink: #1C1A17;
+    --ink-mid: #4A4740;
+    --ink-light: #8C887F;
+    --accent: #C45C2E;
+    --accent-light: #F0D5C8;
+    --border: rgba(28,26,23,0.15);
+    --border-focus: rgba(196,92,46,0.6);
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .page-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+  }
+
+  header {
+    margin-bottom: 72px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.1;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .intro {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    max-width: 520px;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--border);
+    margin: 56px 0;
+  }
+
+  .question-block {
+    margin-bottom: 52px;
+  }
+
+  .q-number {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  label {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+
+  .hint {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    margin-top: -6px;
+  }
+
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    border-radius: 0;
+    padding: 12px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.65;
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s ease;
+    min-height: 96px;
+  }
+
+  textarea:focus {
+    border-bottom-color: var(--accent);
+  }
+
+  textarea::placeholder {
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  textarea.auto-resize {
+    overflow: hidden;
+  }
+
+  .char-count {
+    font-size: 11px;
+    color: var(--ink-light);
+    text-align: right;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .required-star {
+    color: var(--accent);
+    margin-left: 3px;
+  }
+
+  .submit-area {
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .submit-note {
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  button[type="submit"] {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 18px 52px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    border-radius: 0;
+  }
+
+  button[type="submit"]:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  button[type="submit"]:active {
+    transform: translateY(0);
+  }
+
+  button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .error-msg {
+    font-size: 12px;
+    color: #C44444;
+    margin-top: 6px;
+    display: none;
+  }
+
+  textarea.invalid {
+    border-bottom-color: #C44444;
+  }
+
+  textarea.invalid + .char-count + .error-msg,
+  textarea.invalid ~ .error-msg {
+    display: block;
+  }
+
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .success-screen.visible {
+    display: block;
+  }
+
+  .form-content.hidden {
+    display: none;
+  }
+
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    font-size: 22px;
+  }
+
+  .success-screen h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .success-screen p {
+    color: var(--ink-mid);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(247,244,238,0.3);
+    border-top-color: var(--cream);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 52px 24px 80px; }
+    h1 { font-size: 34px; }
+  }
+</style>
 </head>
 <body>
-<iframe 
-  src="https://docs.google.com/forms/d/e/1FAIpQLSdNzJZyzv2xBo86onqgx6qQnt__9ALVu6eBAwJPrpArMixBpA/viewform?usp=header" 
-  width="100%" 
-  height="700" 
-  frameborder="0" 
-  marginheight="0" 
-  marginwidth="0">
-  Loading…
-</iframe>
+<div class="page-wrap">
 
+  <header>
+    <p class="eyebrow">Open Application</p>
+    <h1>Apply for the<br><em>Residency</em></h1>
+    <p class="intro">We're looking for someone who sees art as a form of connection. Take your time — we're reading every word.</p>
+  </header>
+
+  <div class="form-content" id="formContent">
+    <form id="appForm" novalidate>
+
+      <div class="question-block">
+        <p class="q-number">01</p>
+        <label for="q1">What's your name?<span class="required-star">*</span></label>
+        <textarea id="q1" name="name" class="auto-resize" placeholder="Your full name" rows="2" required></textarea>
+        <div class="char-count" id="c1">0 characters</div>
+        <p class="error-msg" id="e1">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">02</p>
+        <label for="q2">Tell us about a community, culture, or group you feel is underrepresented in art spaces, and how you'd spotlight them.<span class="required-star">*</span></label>
+        <textarea id="q2" name="underrepresented" class="auto-resize" placeholder="Share your perspective…" rows="5" required></textarea>
+        <div class="char-count" id="c2">0 characters</div>
+        <p class="error-msg" id="e2">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">03</p>
+        <label for="q3">Describe a time you helped bring people together or made someone feel included.<span class="required-star">*</span></label>
+        <textarea id="q3" name="inclusion" class="auto-resize" placeholder="A story or moment that comes to mind…" rows="5" required></textarea>
+        <div class="char-count" id="c3">0 characters</div>
+        <p class="error-msg" id="e3">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">04</p>
+        <label for="q4">Curate a mini-exhibit (2–4 pieces) around a theme you care about.<span class="required-star">*</span></label>
+        <p class="hint">You may use links, Instagram posts, local artists — anything to set the scene.</p>
+        <textarea id="q4" name="exhibit" class="auto-resize" placeholder="Describe your selections, add links, tag artists…" rows="6" required></textarea>
+        <div class="char-count" id="c4">0 characters</div>
+        <p class="error-msg" id="e4">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">05</p>
+        <label for="q5">How would you describe your availability over the 6-month residency period?<span class="required-star">*</span></label>
+        <textarea id="q5" name="availability" class="auto-resize" placeholder="Hours per week, any known conflicts, preferred schedule…" rows="4" required></textarea>
+        <div class="char-count" id="c5">0 characters</div>
+        <p class="error-msg" id="e5">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">06</p>
+        <label for="q6">What else should we know about you?<span class="required-star">*</span></label>
+        <textarea id="q6" name="about" class="auto-resize" placeholder="Anything that doesn't fit above…" rows="5" required></textarea>
+        <div class="char-count" id="c6">0 characters</div>
+        <p class="error-msg" id="e6">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">07</p>
+        <label for="q7">This residency requires regular email and social media management. Can you describe your experience, or how you'd approach this responsibility?<span class="required-star">*</span></label>
+        <textarea id="q7" name="correspondence" class="auto-resize" placeholder="Your experience or your approach…" rows="5" required></textarea>
+        <div class="char-count" id="c7">0 characters</div>
+        <p class="error-msg" id="e7">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="question-block">
+        <p class="q-number">08</p>
+        <label for="q8">Do you have any questions for us?<span class="required-star">*</span></label>
+        <textarea id="q8" name="questions" class="auto-resize" placeholder="Anything you'd like to know…" rows="4" required></textarea>
+        <div class="char-count" id="c8">0 characters</div>
+        <p class="error-msg" id="e8">Please fill in this field before submitting.</p>
+      </div>
+
+      <div class="submit-area">
+        <p class="submit-note">All fields are required. Your responses go directly to our team — no automated filtering.</p>
+        <button type="submit" id="submitBtn">
+          Submit application
+          <span class="spinner" id="spinner"></span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✦</div>
+    <h2>Application received.</h2>
+    <p>Thank you for taking the time to share your world with us. We'll be in touch soon.</p>
+  </div>
+
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKwRfh2EgQuZd57t-UW09rLRakqoiruDO2Kci3OeivHVVuPfpnaAq9doIS1oa4bZe5/exec';
+
+  const fields = [
+    { id: 'q1', errorId: 'e1' },
+    { id: 'q2', errorId: 'e2' },
+    { id: 'q3', errorId: 'e3' },
+    { id: 'q4', errorId: 'e4' },
+    { id: 'q5', errorId: 'e5' },
+    { id: 'q6', errorId: 'e6' },
+    { id: 'q7', errorId: 'e7' },
+    { id: 'q8', errorId: 'e8' },
+  ];
+
+  fields.forEach(({ id }, i) => {
+    const ta = document.getElementById(id);
+    const counter = document.getElementById('c' + (i + 1));
+
+    function resize() {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    }
+
+    function updateCount() {
+      const len = ta.value.length;
+      counter.textContent = len + ' character' + (len !== 1 ? 's' : '');
+    }
+
+    ta.addEventListener('input', () => {
+      resize();
+      updateCount();
+      if (ta.value.trim()) {
+        ta.classList.remove('invalid');
+        document.getElementById('e' + (i + 1)).style.display = 'none';
+      }
+    });
+
+    resize();
+  });
+
+  document.getElementById('appForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    let valid = true;
+    fields.forEach(({ id, errorId }) => {
+      const ta = document.getElementById(id);
+      const err = document.getElementById(errorId);
+      if (!ta.value.trim()) {
+        ta.classList.add('invalid');
+        err.style.display = 'block';
+        if (valid) ta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        valid = false;
+      } else {
+        ta.classList.remove('invalid');
+        err.style.display = 'none';
+      }
+    });
+
+    if (!valid) return;
+
+    const btn = document.getElementById('submitBtn');
+    const spinner = document.getElementById('spinner');
+    btn.disabled = true;
+    spinner.style.display = 'inline-block';
+
+    const payload = {
+      name:             document.getElementById('q1').value,
+      underrepresented: document.getElementById('q2').value,
+      inclusion:        document.getElementById('q3').value,
+      exhibit:          document.getElementById('q4').value,
+      availability:     document.getElementById('q5').value,
+      about:            document.getElementById('q6').value,
+      correspondence:   document.getElementById('q7').value,
+      questions:        document.getElementById('q8').value,
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      document.getElementById('formContent').classList.add('hidden');
+      document.getElementById('successScreen').classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      alert('Something went wrong. Please try again or contact us directly.');
+    }
+  });
+</script>
 </body>
 </html>
+
