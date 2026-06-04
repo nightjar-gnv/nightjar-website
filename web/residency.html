@@ -4,18 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Residency Application</title>
-
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
+  :root {
     --bg: #EFF4EE;
     --surface: #E6EDE5;
-    --sage: #BEC5A4;
-    --lavender: #E6E6FA;
     --ink: #1E1A2E;
     --ink-mid: #4A4560;
     --ink-light: #8E89A4;
@@ -23,76 +18,70 @@
     --accent-soft: #D9D0EE;
     --accent-hover: #56408A;
     --border: rgba(60,45,110,0.13);
-    --border-focus: rgba(107,79,160,0.5);
     --error: #A03050;
   }
 
-
   body {
-    background: var(--cream);
+    background: var(--bg);
     color: var(--ink);
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
     min-height: 100vh;
-    padding: 0;
   }
 
   .page-wrap {
-    max-width: 720px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 80px 40px 120px;
   }
 
-  header {
-    margin-bottom: 72px;
-  }
+  header { margin-bottom: 68px; }
 
   .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-size: 10px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     font-weight: 500;
   }
 
   h1 {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: clamp(36px, 6vw, 56px);
-    line-height: 1.1;
-    font-weight: 400;
+    font-size: clamp(32px, 5.5vw, 48px);
+    line-height: 1.12;
+    font-weight: 300;
     color: var(--ink);
     margin-bottom: 24px;
+    letter-spacing: -0.02em;
   }
 
-  h1 em {
-    font-style: italic;
+  h1 strong {
+    font-weight: 500;
     color: var(--accent);
   }
 
   .intro {
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.75;
     color: var(--ink-mid);
-    max-width: 520px;
-    border-left: 2px solid var(--accent);
-    padding-left: 20px;
+    max-width: 500px;
+    padding: 18px 20px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
   }
 
   .divider {
-    width: 48px;
+    width: 40px;
     height: 1px;
     background: var(--border);
-    margin: 56px 0;
+    margin: 52px 0;
   }
 
-  .question-block {
-    margin-bottom: 52px;
-  }
+  .question-block { margin-bottom: 48px; }
 
   .q-number {
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 10px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-light);
     margin-bottom: 10px;
@@ -101,66 +90,90 @@
 
   label {
     display: block;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 20px;
-    line-height: 1.35;
+    font-size: 17px;
+    line-height: 1.4;
     color: var(--ink);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     font-weight: 400;
   }
 
   .hint {
     font-size: 13px;
     color: var(--ink-light);
-    line-height: 1.5;
-    margin-bottom: 14px;
-    margin-top: -6px;
+    line-height: 1.55;
+    margin-bottom: 12px;
+    margin-top: -4px;
   }
 
-  textarea {
+  /* Shared input styles */
+  textarea, input[type="email"], input[type="tel"] {
     width: 100%;
     background: transparent;
     border: none;
     border-bottom: 1.5px solid var(--border);
     border-radius: 0;
-    padding: 12px 0;
-    font-family: 'Noto Sans', sans-serif;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 300;
     color: var(--ink);
-    line-height: 1.65;
-    resize: none;
+    line-height: 1.7;
     outline: none;
     transition: border-color 0.2s ease;
-    min-height: 96px;
   }
 
-  textarea:focus {
+  textarea {
+    resize: none;
+    min-height: 90px;
+    overflow: hidden;
+  }
+
+  textarea:focus, input[type="email"]:focus, input[type="tel"]:focus {
     border-bottom-color: var(--accent);
   }
 
-  textarea::placeholder {
+  textarea::placeholder, input::placeholder {
     color: var(--ink-light);
-    font-style: italic;
   }
 
-  textarea.auto-resize {
-    overflow: hidden;
+  textarea.invalid, input.invalid {
+    border-bottom-color: var(--error);
   }
 
   .char-count {
     font-size: 11px;
     color: var(--ink-light);
     text-align: right;
-    margin-top: 6px;
+    margin-top: 5px;
+    letter-spacing: 0.03em;
+  }
+
+  .required-star { color: var(--accent); margin-left: 2px; }
+
+  .error-msg {
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 5px;
+    display: none;
+  }
+
+  /* contact row */
+  .contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contact-field label {
+    font-size: 13px;
+    font-weight: 500;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
   }
 
-  .required-star {
-    color: var(--accent);
-    margin-left: 3px;
-  }
-
+  /* Submit */
   .submit-area {
     padding-top: 40px;
     border-top: 1px solid var(--border);
@@ -174,50 +187,37 @@
   }
 
   button[type="submit"] {
-    background: var(--sage);
-    color: var(--lavender);
+    background: var(--accent);
+    color: #fff;
     border: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 18px 52px;
+    padding: 16px 48px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
-    border-radius: 0;
+    border-radius: 2px;
   }
 
-  button[type="submit"]:hover {
-    background: var(--accent);
-    transform: translateY(-1px);
-  }
+  button[type="submit"]:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  button[type="submit"]:active { transform: translateY(0); }
+  button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  button[type="submit"]:active {
-    transform: translateY(0);
-  }
-
-  button[type="submit"]:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .error-msg {
-    font-size: 12px;
-    color: #C44444;
-    margin-top: 6px;
+  .spinner {
     display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin-left: 10px;
+    vertical-align: middle;
   }
 
-  textarea.invalid {
-    border-bottom-color: #C44444;
-  }
-
-  textarea.invalid + .char-count + .error-msg,
-  textarea.invalid ~ .error-msg {
-    display: block;
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .success-screen {
     display: none;
@@ -225,61 +225,42 @@
     padding: 80px 0;
   }
 
-  .success-screen.visible {
-    display: block;
-  }
-
-  .form-content.hidden {
-    display: none;
-  }
+  .success-screen.visible { display: block; }
+  .form-content.hidden { display: none; }
 
   .success-icon {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     border: 1.5px solid var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 32px;
-    font-size: 22px;
+    margin: 0 auto 28px;
+    font-size: 20px;
+    color: var(--accent);
   }
 
   .success-screen h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 32px;
-    font-weight: 400;
-    margin-bottom: 16px;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 14px;
     color: var(--ink);
+    letter-spacing: -0.01em;
   }
 
   .success-screen p {
     color: var(--ink-mid);
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 420px;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 400px;
     margin: 0 auto;
   }
 
-  .spinner {
-    display: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(247,244,238,0.3);
-    border-top-color: var(--cream);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    margin-left: 12px;
-    vertical-align: middle;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
   @media (max-width: 600px) {
-    .page-wrap { padding: 52px 24px 80px; }
-    h1 { font-size: 34px; }
+    .page-wrap { padding: 48px 22px 72px; }
+    h1 { font-size: 30px; }
+    .contact-row { grid-template-columns: 1fr; gap: 24px; }
   }
 </style>
 </head>
@@ -288,94 +269,122 @@
 
   <header>
     <p class="eyebrow">Open Application</p>
-    <h1>Apply for the<br><em>Residency</em></h1>
-    <p class="intro">Thank you for applying! Please email any additional supporting documents to nightjargnv@gmail.com</p>
+    <h1>Apply for the<br><strong>Residency</strong></h1>
+    <p class="intro">We're looking for someone who sees art as a form of connection. Take your time — we're reading every word.</p>
   </header>
 
   <div class="form-content" id="formContent">
     <form id="appForm" novalidate>
 
+      <!-- Q01: Name -->
       <div class="question-block">
         <p class="q-number">01</p>
         <label for="q1">What's your name?<span class="required-star">*</span></label>
-        <textarea id="q1" name="name" class="auto-resize" placeholder="Your full name" rows="2" required></textarea>
+        <textarea id="q1" name="name" placeholder="Your full name" rows="2" required></textarea>
         <div class="char-count" id="c1">0 characters</div>
         <p class="error-msg" id="e1">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Contact info -->
       <div class="question-block">
         <p class="q-number">02</p>
+        <label>Contact information<span class="required-star">*</span></label>
+        <div class="contact-row">
+          <div class="contact-field">
+            <label for="qEmail">Email address</label>
+            <input type="email" id="qEmail" name="email" placeholder="you@example.com" required>
+            <p class="error-msg" id="eEmail">Please enter a valid email address.</p>
+          </div>
+          <div class="contact-field">
+            <label for="qPhone">Phone number</label>
+            <input type="tel" id="qPhone" name="phone" placeholder="+1 (000) 000-0000" required>
+            <p class="error-msg" id="ePhone">Please enter a phone number.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Q03 -->
+      <div class="question-block">
+        <p class="q-number">03</p>
         <label for="q2">Tell us about a community, culture, or group you feel is underrepresented in art spaces, and how you'd spotlight them.<span class="required-star">*</span></label>
-        <textarea id="q2" name="underrepresented" class="auto-resize" placeholder="Share your perspective…" rows="5" required></textarea>
+        <textarea id="q2" name="underrepresented" placeholder="Share your perspective…" rows="5" required></textarea>
         <div class="char-count" id="c2">0 characters</div>
         <p class="error-msg" id="e2">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Q04 -->
       <div class="question-block">
-        <p class="q-number">03</p>
+        <p class="q-number">04</p>
         <label for="q3">Describe a time you helped bring people together or made someone feel included.<span class="required-star">*</span></label>
-        <textarea id="q3" name="inclusion" class="auto-resize" placeholder="A story or moment that comes to mind…" rows="5" required></textarea>
+        <textarea id="q3" name="inclusion" placeholder="A story or moment that comes to mind…" rows="5" required></textarea>
         <div class="char-count" id="c3">0 characters</div>
         <p class="error-msg" id="e3">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Q05 -->
       <div class="question-block">
-        <p class="q-number">04</p>
+        <p class="q-number">05</p>
         <label for="q4">Curate a mini-exhibit (2–4 pieces) around a theme you care about.<span class="required-star">*</span></label>
         <p class="hint">You may use links, Instagram posts, local artists — anything to set the scene.</p>
-        <textarea id="q4" name="exhibit" class="auto-resize" placeholder="Describe your selections, add links, tag artists…" rows="6" required></textarea>
+        <textarea id="q4" name="exhibit" placeholder="Describe your selections, add links, tag artists…" rows="6" required></textarea>
         <div class="char-count" id="c4">0 characters</div>
         <p class="error-msg" id="e4">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Q06 -->
       <div class="question-block">
-        <p class="q-number">05</p>
+        <p class="q-number">06</p>
         <label for="q5">How would you describe your availability over the 6-month residency period?<span class="required-star">*</span></label>
-        <textarea id="q5" name="availability" class="auto-resize" placeholder="Hours per week, any known conflicts, preferred schedule…" rows="4" required></textarea>
+        <textarea id="q5" name="availability" placeholder="Hours per week, any known conflicts, preferred schedule…" rows="4" required></textarea>
         <div class="char-count" id="c5">0 characters</div>
         <p class="error-msg" id="e5">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Q07 -->
       <div class="question-block">
-        <p class="q-number">06</p>
+        <p class="q-number">07</p>
         <label for="q6">What else should we know about you?<span class="required-star">*</span></label>
-        <textarea id="q6" name="about" class="auto-resize" placeholder="Anything that doesn't fit above…" rows="5" required></textarea>
+        <textarea id="q6" name="about" placeholder="Anything that doesn't fit above…" rows="5" required></textarea>
         <div class="char-count" id="c6">0 characters</div>
         <p class="error-msg" id="e6">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Q08 -->
       <div class="question-block">
-        <p class="q-number">07</p>
+        <p class="q-number">08</p>
         <label for="q7">This residency requires regular email and social media management. Can you describe your experience, or how you'd approach this responsibility?<span class="required-star">*</span></label>
-        <textarea id="q7" name="correspondence" class="auto-resize" placeholder="Your experience or your approach…" rows="5" required></textarea>
+        <textarea id="q7" name="correspondence" placeholder="Your experience or your approach…" rows="5" required></textarea>
         <div class="char-count" id="c7">0 characters</div>
         <p class="error-msg" id="e7">Please fill in this field before submitting.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- Q09 -->
       <div class="question-block">
-        <p class="q-number">08</p>
+        <p class="q-number">09</p>
         <label for="q8">Do you have any questions for us?<span class="required-star">*</span></label>
-        <textarea id="q8" name="questions" class="auto-resize" placeholder="Anything you'd like to know…" rows="4" required></textarea>
+        <textarea id="q8" name="questions" placeholder="Anything you'd like to know…" rows="4" required></textarea>
         <div class="char-count" id="c8">0 characters</div>
         <p class="error-msg" id="e8">Please fill in this field before submitting.</p>
       </div>
 
       <div class="submit-area">
-        <p class="submit-note">All fields are required. Your responses go directly to our team — no automated filtering. Please email any supporting documents to nightjargnv@gmail.com</p>
+        <p class="submit-note">All fields are required. Your responses go directly to our team — no automated filtering.</p>
         <button type="submit" id="submitBtn">
           Submit application
           <span class="spinner" id="spinner"></span>
@@ -396,7 +405,7 @@
 <script>
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKwRfh2EgQuZd57t-UW09rLRakqoiruDO2Kci3OeivHVVuPfpnaAq9doIS1oa4bZe5/exec';
 
-  const fields = [
+  const textFields = [
     { id: 'q1', errorId: 'e1' },
     { id: 'q2', errorId: 'e2' },
     { id: 'q3', errorId: 'e3' },
@@ -407,7 +416,7 @@
     { id: 'q8', errorId: 'e8' },
   ];
 
-  fields.forEach(({ id }, i) => {
+  textFields.forEach(({ id }, i) => {
     const ta = document.getElementById(id);
     const counter = document.getElementById('c' + (i + 1));
 
@@ -433,17 +442,31 @@
     resize();
   });
 
+  // Clear inline errors on input for email/phone
+  ['qEmail', 'qPhone'].forEach((id, i) => {
+    const input = document.getElementById(id);
+    input.addEventListener('input', () => {
+      if (input.value.trim()) {
+        input.classList.remove('invalid');
+        document.getElementById(i === 0 ? 'eEmail' : 'ePhone').style.display = 'none';
+      }
+    });
+  });
+
   document.getElementById('appForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     let valid = true;
-    fields.forEach(({ id, errorId }) => {
+    let firstInvalid = null;
+
+    // Validate textareas
+    textFields.forEach(({ id, errorId }) => {
       const ta = document.getElementById(id);
       const err = document.getElementById(errorId);
       if (!ta.value.trim()) {
         ta.classList.add('invalid');
         err.style.display = 'block';
-        if (valid) ta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (!firstInvalid) firstInvalid = ta;
         valid = false;
       } else {
         ta.classList.remove('invalid');
@@ -451,7 +474,37 @@
       }
     });
 
-    if (!valid) return;
+    // Validate email
+    const emailEl = document.getElementById('qEmail');
+    const emailErr = document.getElementById('eEmail');
+    const emailOk = emailEl.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
+    if (!emailOk) {
+      emailEl.classList.add('invalid');
+      emailErr.style.display = 'block';
+      if (!firstInvalid) firstInvalid = emailEl;
+      valid = false;
+    } else {
+      emailEl.classList.remove('invalid');
+      emailErr.style.display = 'none';
+    }
+
+    // Validate phone
+    const phoneEl = document.getElementById('qPhone');
+    const phoneErr = document.getElementById('ePhone');
+    if (!phoneEl.value.trim()) {
+      phoneEl.classList.add('invalid');
+      phoneErr.style.display = 'block';
+      if (!firstInvalid) firstInvalid = phoneEl;
+      valid = false;
+    } else {
+      phoneEl.classList.remove('invalid');
+      phoneErr.style.display = 'none';
+    }
+
+    if (!valid) {
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
 
     const btn = document.getElementById('submitBtn');
     const spinner = document.getElementById('spinner');
@@ -460,6 +513,8 @@
 
     const payload = {
       name:             document.getElementById('q1').value,
+      email:            emailEl.value,
+      phone:            phoneEl.value,
       underrepresented: document.getElementById('q2').value,
       inclusion:        document.getElementById('q3').value,
       exhibit:          document.getElementById('q4').value,
@@ -480,6 +535,7 @@
       document.getElementById('formContent').classList.add('hidden');
       document.getElementById('successScreen').classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
     } catch (err) {
       btn.disabled = false;
       spinner.style.display = 'none';
