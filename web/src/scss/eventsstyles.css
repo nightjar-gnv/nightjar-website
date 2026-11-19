@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #222;
+}
+
+header {
+  background: #000000;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-family: "Sono", monospace;
+}
+
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.upcoming h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+#event-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#event-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+#event-list li:last-child {
+  border-bottom: none;
+}
+
+.event-title {
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.event-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.event-title a:hover {
+  text-decoration: underline;
+}
+
+.event-time,
+.event-location {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
+
+.status {
+  color: #777;
+  font-style: italic;
+}
+
+.error {
+  color: #c62828;
+}
+
+.calendar iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+}
+
+/* ===== Flyer carousel ===== */
+.flyers {
+  grid-column: 1 / -1; /* spans the full width under both columns */
+}
+
+.flyers[hidden] {
+  display: none;
+}
+
+.flyers h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.carousel {
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.flyer {
+  position: relative;
+  flex: 0 0 220px;
+  margin: 0;
+  scroll-snap-align: start;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #eee;
+  outline: none;
+}
+
+.flyer img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.flyer figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem 0.75rem 0.75rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: #fff;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.flyer:hover figcaption,
+.flyer:focus figcaption {
+  opacity: 1;
+  transform: none;
+}
+
+/* Touch screens can't hover, so always show the caption there */
+@media (hover: none) {
+  .flyer figcaption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.flyer-title {
+  display: block;
+  font-weight: 600;
+}
+
+.flyer-date {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.carousel-btn[hidden] {
+  display: none;
+}
+
+.carousel-btn.prev {
+  left: -10px;
+}
+
+.carousel-btn.next {
+  right: -10px;
+}
+
+/* Stack on small screens */
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar iframe {
+    height: 450px;
+  }
+
+  /* Flyers stack vertically instead of scrolling sideways */
+  .carousel-track {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .flyer {
+    flex: none;
+    width: 100%;
+  }
+
+  .flyer img {
+    height: auto; /* show the whole flyer, no cropping */
+  }
+
+  .carousel-btn {
+    display: none;
+  }
+}
