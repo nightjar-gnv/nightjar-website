@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nightjar Calendar</title>
+  <link rel="stylesheet" href="web/style.css">
+</head>
+<body>
+  <header>
+    <h1>NIGHTJAR Gallery & Studios</h1>
+  </header>
+
+  <main>
+    <section class="upcoming">
+      <h2>Upcoming Events</h2>
+      <ul id="event-list">
+        <li class="status">Loading events…</li>
+      </ul>
+    </section>
+
+    <section class="calendar">
+      <iframe id="calendar-frame" title="Google Calendar" frameborder="0" scrolling="no"></iframe>
+    </section>
+
+    <section class="flyers" id="flyers" hidden>
+      <h2>Event Flyers</h2>
+      <div class="carousel">
+        <button class="carousel-btn prev" aria-label="Previous flyers">&#8249;</button>
+        <div class="carousel-track" id="carousel-track"></div>
+        <button class="carousel-btn next" aria-label="Next flyers">&#8250;</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="web/script.js"></script>
+</body>
+</html>
