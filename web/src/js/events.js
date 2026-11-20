@@ -1,5 +1,5 @@
 // ===== CONFIG — fill these in =====
-const CALENDAR_ID = "f47813df05cc1e6708e514a8ca2036b61802c80739ba0eeba3fcabcfce81c6c4@group.calendar.google.com";
+//const CALENDAR_ID = "f47813df05cc1e6708e514a8ca2036b61802c80739ba0eeba3fcabcfce81c6c4@group.calendar.google.com";
 const API_KEY = "AIzaSyDesws55psRt1IX2ggC233XdKZ7BJ-GTW4";
 const MAX_EVENTS = 8;    // how many events the list shows
 const FETCH_COUNT = 25;  // how many upcoming events to scan for flyers
