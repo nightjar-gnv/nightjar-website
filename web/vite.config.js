@@ -10,7 +10,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'), 
         
         // Option A: An additional HTML page in the root directory
-        residency: resolve(__dirname, 'residency.html')
+        residency: resolve(__dirname, 'residency.html'),
+        events: resolve(__dirname, 'events.html')
       }
     }
   },
